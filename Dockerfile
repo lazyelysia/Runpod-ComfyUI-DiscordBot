@@ -128,9 +128,9 @@ RUN pip uninstall -y uv 2>/dev/null || true && \
 RUN curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
 
 # Install ComfyUI-DiscordBot
-RUN git clone https://github.com/lazyelysia/ComfyUI-DiscordBot
-RUN chmod +x ./ComfyUI-DiscordBot/setup_linux.bat
-RUN ./ComfyUI-DiscordBot/setup_linux.bat
+RUN wget https://github.com/lazyelysia/ComfyUI-DiscordBot/releases/download/1.0.2/ComfyUI-DiscordBot_v1.0.2_linux.tar.xz
+RUN mkdir ComfyUI-DiscordBot
+RUN tar -xf ComfyUI-DiscordBot_v1.0.2_linux.tar.xz -C ./ComfyUI-DiscordBot
 
 # Set CUDA environment variables
 ENV PATH=/usr/local/cuda/bin:${PATH}
@@ -160,6 +160,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
     update-alternatives --set python3 /usr/bin/python3.12
 
 ENTRYPOINT ["/start.sh"]
+
 
 
 
