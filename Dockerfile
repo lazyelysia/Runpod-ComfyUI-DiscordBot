@@ -129,8 +129,8 @@ RUN curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh |
 
 # Install ComfyUI-DiscordBot
 RUN git clone https://github.com/lazyelysia/ComfyUI-DiscordBot
-RUN chmod +x ./ComfyUI-DiscordBot/setup.bat
-RUN ./ComfyUI-DiscordBot/setup.bat
+RUN chmod +x ./ComfyUI-DiscordBot/setup_linux.bat
+RUN ./ComfyUI-DiscordBot/setup_linux.bat
 
 # Set CUDA environment variables
 ENV PATH=/usr/local/cuda/bin:${PATH}
@@ -160,6 +160,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
     update-alternatives --set python3 /usr/bin/python3.12
 
 ENTRYPOINT ["/start.sh"]
+
 
 
 
