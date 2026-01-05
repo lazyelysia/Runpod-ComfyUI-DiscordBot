@@ -127,11 +127,6 @@ RUN pip uninstall -y uv 2>/dev/null || true && \
 # Install FileBrowser
 RUN curl -fsSL https://raw.githubusercontent.com/filebrowser/get/master/get.sh | bash
 
-# Install ComfyUI-DiscordBot
-RUN wget https://github.com/lazyelysia/ComfyUI-DiscordBot/releases/download/1.0.2/ComfyUI-DiscordBot_v1.0.2_linux.tar.xz
-RUN mkdir ComfyUI-DiscordBot
-RUN tar -xf ComfyUI-DiscordBot_v1.0.2_linux.tar.xz -C ./ComfyUI-DiscordBot
-
 # Set CUDA environment variables
 ENV PATH=/usr/local/cuda/bin:${PATH}
 ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64
@@ -148,6 +143,11 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 RUN mkdir -p /workspace/runpod-slim
 WORKDIR /workspace/runpod-slim
 
+# Install ComfyUI-DiscordBot
+RUN wget https://github.com/lazyelysia/ComfyUI-DiscordBot/releases/download/1.0.2/ComfyUI-DiscordBot_v1.0.2_linux.tar.xz
+RUN mkdir ComfyUI-DiscordBot
+RUN tar -xf ComfyUI-DiscordBot_v1.0.2_linux.tar.xz -C ./ComfyUI-DiscordBot
+
 # Expose ports
 EXPOSE 8188 22 8888 8080
 
@@ -160,6 +160,7 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
     update-alternatives --set python3 /usr/bin/python3.12
 
 ENTRYPOINT ["/start.sh"]
+
 
 
 
