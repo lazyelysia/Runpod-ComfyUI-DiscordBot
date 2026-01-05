@@ -2,6 +2,7 @@
 set -e  # Exit the script if any statement returns a non-true return value
 
 COMFYUI_DIR="/workspace/runpod-slim/ComfyUI"
+BOT_DIR="/workspace/runpod-slim/ComfyUI-DiscordBot"
 VENV_DIR="$COMFYUI_DIR/.venv"
 FILEBROWSER_CONFIG="/root/.config/filebrowser/config.json"
 DB_FILE="/workspace/runpod-slim/filebrowser.db"
@@ -248,6 +249,11 @@ else
         fi
     done
 fi
+
+# Start ComfyUI-DiscordBot
+cd $BOT_DIR
+chmod +x ./start.bat
+./start.bat
 
 # Start ComfyUI with custom arguments if provided
 cd $COMFYUI_DIR
