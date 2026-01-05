@@ -252,8 +252,8 @@ fi
 
 # Start ComfyUI-DiscordBot
 cd $BOT_DIR
-chmod +x ./start.bat
-./start.bat
+chmod +x start.sh
+./start.sh
 
 # Start ComfyUI with custom arguments if provided
 cd $COMFYUI_DIR
