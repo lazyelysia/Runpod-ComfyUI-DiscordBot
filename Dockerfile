@@ -141,15 +141,15 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 
 # Create workspace directory
 RUN mkdir -p /workspace/runpod-slim
+RUN mkdir -p /workspace/runpod-slim/DiscordBot
 WORKDIR /workspace/runpod-slim
 
 # Expose ports
 EXPOSE 8188 22 8888 8080
 
 # Install ComfyUI-DiscordBot
-RUN mkdir ComfyUI-DiscordBot
 RUN wget https://github.com/lazyelysia/ComfyUI-DiscordBot/releases/download/1.0.2/ComfyUI-DiscordBot_v1.0.2_linux.tar.xz
-RUN tar -xf ComfyUI-DiscordBot_v1.0.2_linux.tar.xz -C ComfyUI-DiscordBot
+RUN tar -xf ComfyUI-DiscordBot_v1.0.2_linux.tar.xz -C DiscordBot
 
 # Copy and set up start script
 COPY start.sh /start.sh
@@ -160,11 +160,3 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
     update-alternatives --set python3 /usr/bin/python3.12
 
 ENTRYPOINT ["/start.sh"]
-
-
-
-
-
-
-
-
