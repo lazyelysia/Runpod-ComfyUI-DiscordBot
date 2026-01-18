@@ -2,7 +2,7 @@
 set -e  # Exit the script if any statement returns a non-true return value
 
 COMFYUI_DIR="/workspace/runpod-slim/ComfyUI"
-BOT_DIR="/workspace/runpod-slim/ComfyUI-DiscordBot"
+BOT_DIR="/workspace/runpod-slim/DiscordBot"
 VENV_DIR="$COMFYUI_DIR/.venv"
 FILEBROWSER_CONFIG="/root/.config/filebrowser/config.json"
 DB_FILE="/workspace/runpod-slim/filebrowser.db"
@@ -250,11 +250,6 @@ else
     done
 fi
 
-# Start ComfyUI-DiscordBot
-cd $BOT_DIR
-chmod +x start.sh
-./start.sh
-
 # Start ComfyUI with custom arguments if provided
 cd $COMFYUI_DIR
 FIXED_ARGS="--listen 0.0.0.0 --port 8188"
@@ -273,6 +268,11 @@ else
     echo "Starting ComfyUI with default arguments"
     nohup python main.py $FIXED_ARGS &> /workspace/runpod-slim/comfyui.log &
 fi
+
+# Start ComfyUI-DiscordBot
+cd $BOT_DIR
+chmod +x start.sh
+./start.sh
 
 # Tail the log file
 tail -f /workspace/runpod-slim/comfyui.log
